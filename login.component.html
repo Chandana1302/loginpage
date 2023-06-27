@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <P><b><u>LOGIN PAGE</u></b></P>
+      <h6><i>M.CHANDANA KAMALA [FY24-BATCH-II]</i></h6>
+    </div>
+    <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+      <div class="emailInput">
+        <mat-form-field class="full-width" appearance="outline">
+          <h5>E-mail 📩</h5>
+          <input
+            formControlName="email"
+            matInput
+          />
+          <mat-error *ngIf="!loginForm.get('email')?.errors?.['required']">Email incorrect</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched) && loginForm.get('email')?.errors?.['required']">
+          Email is required
+        </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="full-width" appearance="outline">
+          <h5>Password 🗝️</h5>
+          <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'">
+          <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+          [attr.aria-pressed]="hide" requried >
+          <mat-icon>
+            {{hide ? '☐' : '☑'}}
+        </mat-icon>
+      </button>
+      <mat-error *ngIf="!loginForm.get('password')?.errors?.['required']">Password incorrect</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched) && loginForm.get('password')?.errors?.['required']">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      </div>
+      <br>
+      <br>
+      <button mat-flat-button color="primary" a routerLink="['\dashboard']">Login</button>
+    </form>
+     <h6>Note:Please enter authorized valid credentials </h6>
+  </mat-card-content>
+</mat-card>
